@@ -1,112 +1,79 @@
-var e,f;
-
-var i,j;
-
-//Purple Circle
-var x = 778;
-var y = 476;
-var w = 35;
-var h = 35;
-
-//Orange square 
-var a = 728;
-var b = 462;
-var c = 30;
-var d = 30;
-
-let powerOn = false;
-let changeChannel = false; 
-
 function setup() {
-  createCanvas(800,500);
-  frameRate(120);
-  //slow circle
-  e=65;
-  f=276;
-  espeed = 3;
-  
-  //fast square
-  i=65
-  j=height/2
-  ispeed = 10
+  // put setup code here
 }
-
 
 function draw() {
-  background(0);
-  
-  
+  createCanvas(400, 400);
+  background(200);
 
+  //roof
   push();
-  //sky
-  fill(135, 206, 235);
-  quad(40,40,760,40,760,460,40,460);
   
-  //grass
-  fill('#7EC850');
-  quad(40,310, 760,310, 760,460, 40,460);
-  
-  powerButton();
-  channelButton();
-  
-  //Words CH = Channel Button and Power = Power button
-  fill(0);
-  text("ON",769,480);
-  text("CH",733,480);
+  strokeWeight(8);
+  stroke(255);
+
+  //Botttom of roof
+  line(90, 200, 310, 200);
+
+  //roof sides
+  line(200,50, 90, 200);
+  line(310, 200, 200,50);
+
   pop();
 
-  //Buttons
-  if (changeChannel){
-   powerOn = false;
-       
-   fill('#ffaa28');
-    strokeWeight(2);
-    rect(i,j, 60, 60);
-    i+= ispeed;
-    if(i-25 <= 20 || i+25 >720){
-      ispeed *= -1;
-     }else{
-       changeChannel = true;
-     }
-      
-     }
-     
-       
-  if (powerOn){
-   changeChannel = false;
+  //House Sqaure
+  push();
 
-    fill('#7d14f3');
-    strokeWeight(2);
-    ellipse(e,f, 70, 70);
-    e+= espeed;
-    if(e-25 <= 40 || e+25 >760){
-      espeed *= -1;
-    }else{
-      powerOn = true;
-    }
-    
-  }
- 
+  fill(50);
+  rect(100, 200, 200, 380);
 
-}
+  pop();
 
-function powerButton(){
-  fill('#00ab66');
-  ellipse(x, y, w, h);
- }
+  //Door
+  push();
 
-function channelButton(){
-   fill('#0096FF');
-   strokeWeight(2);
-   rect(a, b, c, d);
-}
+  fill(20);
+  rect(120,270,90,299);
 
+  pop();
 
-function mousePressed(){
-  if(dist(mouseX, mouseY, x,y)<w/2){
-    powerOn= !powerOn;
-  }
-    if(mouseX > a && mouseX < a+c && mouseY > b && mouseY<b+d){
-    changeChannel= !changeChannel;
-  }
+  //windows
+  push();
+
+  // Attic Window
+  ellipseMode(RADIUS);
+  noFill();
+  ellipse(200,140,35,35);
+  ellipseMode(CENTER);
+  fill(230);
+  ellipse(200,140,50,50);
+
+  //Window next to Door
+  ellipseMode(RADIUS);
+  fill(20);
+  ellipse(255,290,36,36);
+  ellipseMode(CENTER);
+  fill(230);
+  ellipse(255,290,54,54);
+
+  pop();  
+  
+  //Knobs
+  push();
+
+  //door knob
+  stroke(255);
+  strokeWeight(8);
+  point(195,340);
+
+  //Window Knob
+  strokeWeight(8);
+  point(286,290);
+
+  //Attic Window Knob
+  strokeWeight(8);
+  stroke(0);
+  point(230,140);
+
+  pop();
 }
